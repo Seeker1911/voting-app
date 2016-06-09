@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Vote Now!</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <div ng-app="app">
+    <div ng-controller="MainCtrl as main">
+      <h1>{{main.heading}}</h1>
+      <div>
+        <button ng-click="main.HarleyDavidson()">Harley-Davidson</button>{{main.HarleyDavidsonCount}}
+      </div>
+      <div>
+        <button ng-click="main.Honda()">Honda</button>{{main.HondaCount}}
+      </div>
+    </div>
+  </div>
+  <script src="bower_components/firebase/firebase.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="main.js"></script>
+</html>
