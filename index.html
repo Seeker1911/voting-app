@@ -1,21 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Vote Now!</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Voting app</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
   <div ng-app="app">
-    <div ng-controller="MainCtrl as main">
-      <h1>{{main.heading}}</h1>
-      <div>
-        <button ng-click="main.HarleyDavidson()">Harley-Davidson</button>{{main.HarleyDavidsonCount}}
-      </div>
-      <div>
-        <button ng-click="main.Honda()">Honda</button>{{main.HondaCount}}
+    <div class="container">
+      <div ng-controller="MainCtrl as main">
+
+        <div class="page-header">
+          <h1 class="text-center">{{main.header}}</h1>
+        </div>
+
+        <div class="row">
+          <div class="column col-lg-4 col-lg-offset-4">
+            <form class="form-inline nominate" ng-submit="main.nominate(main.submitNew)">
+              <input type="text" class="form-control" ng-model="main.submitNew.name" id="nominate" name="nominate" placeholder="Nominate" />
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column col-lg-12">
+            <table class="table table-striped table-hover">
+            <tr ng-repeat="option in main.options | toArray:true | orderBy: 'votes':true">
+              <td>
+                <h3>{{option.name}}</h3>
+                <button class="btn btn-info" ng-click="main.nominateCount(option)">Votes: {{option.votes}}</button>
+              </td>
+            </tr>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
+
   <script src="bower_components/firebase/firebase.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
   <script src="main.js"></script>
+
+</body>
 </html>
